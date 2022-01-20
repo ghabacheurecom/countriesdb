@@ -97,3 +97,74 @@ mysqldump -u root -p countries | zip> mysql_countries.sql.zip
 mysqldump -u root -p countries | bzip2 > mysql_countries.sql.bz2
 mysqldump -u root -p countries | lzma > mysql_countries.sql.lzma
 ```
+## SQLite
+```
+sqlite3 countries.db
+create table countries (id integer primary key autoincrement , name text not null);
+insert into countries (name) values ('France');
+insert into countries (name) values ('Italy');
+insert into countries (name) values ('Spain');
+create table cities (id integer primary key autoincrement, name text not null, country integer not null, foreign key (country) references countries(id));
+insert into cities (name, country) values ('Nice', 1);
+insert into cities (name, country) values ('Paris', 1);
+insert into cities (name, country) values ('Lyon', 1);
+insert into cities (name, country) values ('Marseille', 1);
+insert into cities (name, country) values ('Roma', 2);
+insert into cities (name, country) values ('Milano', 2);
+insert into cities (name, country) values ('Turino', 2);
+insert into cities (name, country) values ('Madrid', 3);
+insert into cities (name, country) values ('Barcelona', 3);
+.output ./sqlite_countries.sql
+.dump
+.exit
+gzip -c sqlite_countries.sql > sqlite_countries.sql.gz
+gzip -9c sqlite_countries.sql > sqlite_countries-9.sql.gz
+zip -c sqlite_countries.sql > sqlite_countries.sql.zip
+bzip2 -c sqlite_countries.sql > sqlite_countries.sql.bz2
+lzma -c sqlite_countries.sql  > sqlite_countries.sql.lzma
+```
+
+## JSON
+```
+gzip -c countries.min.json > countries.min.json.gz
+gzip -9c countries.min.json > countries-9.min.json.gz
+zip -c countries.min.json > countries.min.json.zip
+bzip2 -c countries.min.json > countries.min.json.bz2
+lzma -c countries.min.json  > countries.min.json.lzma
+```
+
+## XML
+```
+gzip -c countries.min.xml > countries.min.xml.gz
+gzip -9c countries.min.xml > countries-9.min.xml.gz
+zip -c countries.min.xml > countries.min.xml.zip
+bzip2 -c countries.min.xml > countries.min.xml.bz2
+lzma -c countries.min.xml  > countries.min.xml.lzma
+```
+
+## CSV
+```
+gzip -c countries_csv.tar > countries_csv.tar.gz
+gzip -9c countries_csv.tar > countries_csv-9.tar.gz
+zip -c countries_csv.tar > countries_csv.tar.zip
+bzip2 -c countries_csv.tar > countries_csv.tar.bz2
+lzma -c countries_csv.tar > countries_csv.tar.lzma
+```
+
+## Apache Parquet
+```
+tar -cvf countries_parquet.tar countries.parquet cities.parquet
+gzip -c countries_parquet.tar > countries_parquet.tar.gz
+gzip -9c countries_parquet.tar > countries_parquet-9.tar.gz
+zip -c countries_parquet.tar > countries_parquet.tar.zip
+bzip2 -c countries_parquet.tar > countries_parquet.tar.bz2
+lzma -c countries_parquet.tar > countries_parquet.tar.lzma
+```
+
+## SIARD 
+```
+gzip -c countries.siard > countries.siard.gz
+gzip -9c countries.siard  > countries-9.siard.gz
+bzip2 -c countries.siard  > countries.siard.bz2
+lzma -c countries.siard  > countries.siard.lzma
+```
