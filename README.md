@@ -67,3 +67,33 @@ pg_dump -U postgres -Ft countries | bzip2 > postgres_countries.tar.bz2
 pg_dump -U postgres -Ft countries | lzma > postgres_countries.tar.lzma
 pg_dump -U postgres -Ft countries > postgres_countries.tar
 ```
+
+## MySQL
+```
+mysql -u root -p
+create database countries;
+show databases;
+use countries;
+create table countries (id int not null auto_increment, name varchar(50) not null, primary key (id));
+insert into countries (name) values ('France');
+insert into countries (name) values ('Italy');
+insert into countries (name) values ('Spain');
+create table cities (id int not null auto_increment, name varchar(50) not null, country int not null, primary key (id), foreign key (country) references countries(id));
+show tables;
+insert into cities (name, country) values ('Nice', 1);
+insert into cities (name, country) values ('Paris', 1);
+insert into cities (name, country) values ('Lyon', 1);
+insert into cities (name, country) values ('Marseille', 1);
+insert into cities (name, country) values ('Roma', 2);
+insert into cities (name, country) values ('Milano', 2);
+insert into cities (name, country) values ('Turino', 2);
+insert into cities (name, country) values ('Madrid', 3);
+insert into cities (name, country) values ('Barcelona', 3);
+exit
+mysqldump -u root -p countries > mysql_countries.sql
+mysqldump -u root -p countries | gzip -9> mysql_countries-9.sql.gz
+mysqldump -u root -p countries | gzip > mysql_countries.sql.gz
+mysqldump -u root -p countries | zip> mysql_countries.sql.zip
+mysqldump -u root -p countries | bzip2 > mysql_countries.sql.bz2
+mysqldump -u root -p countries | lzma > mysql_countries.sql.lzma
+```
