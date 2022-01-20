@@ -1,7 +1,8 @@
-#Database Storage
-##Comparison between different formats and compression methods
+# Database Storage
 
-###Database example: countries
+## Comparison between different formats and compression methods
+
+###### Database example: countries
 
 countries        cities
 =========        ======
@@ -17,3 +18,4 @@ countries        cities
                  |7|Turino   |2|
                  |8|Madrid   |3|
                  |9|Barcelona|3|
+
